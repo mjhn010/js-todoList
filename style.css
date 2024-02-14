@@ -32,3 +32,6 @@ body{
     justify-content: space-between;
     padding: 0.5em;
 }
+.task-done{
+    text-decoration: line-through;
+}
