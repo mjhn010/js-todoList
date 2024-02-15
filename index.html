@@ -15,20 +15,21 @@
   </head>
   <body>
     <div class="container">
-      <h1>Todo List</h1>
+        <div class="title-box">
+            <h1>ToDo List</h1>
+        </div>
       <section class="input-area">
-        <input id="task-input" type="text" />
-        <button id="add-btn" type="button">+</button>
+        <input onkeydown="enterKey()" placeholder="해야 할 일을 입력하세요." id="task-input" type="text" />
+        <button id="add-btn" type="button">add</button>
       </section>
       <section class="text-area">
         <div class="task-tabs">
           <div id="under-line"></div>
-          <div>전체</div>
-          <div>해야 할 일</div>
-          <div>완료</div>
+          <div class="menu" id="all">all</div>
+          <div class="menu" id="ongoing">ing</div>
+          <div class="menu" id="done">complete</div>
         </div>
-        <div id="task-board">
-        </div>
+        <div id="task-board"></div>
       </section>
     </div>
 
