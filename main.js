@@ -14,22 +14,20 @@ let tabs = document.querySelectorAll(".task-tabs div");
 let underBar = document.getElementById("under-line");
 let menus = document.querySelectorAll(".menu");
 let taskList = [];
-let mode = 'all';
+let mode = "all";
 let filterList = [];
 
-menus.forEach((menu) => menu.addEventListener("click",(e)=>moveUnderBar(e)));
+menus.forEach((menu) => menu.addEventListener("click", (e) => moveUnderBar(e)));
 
-
-function moveUnderBar(e){
-    underBar.style.left = e.currentTarget.offsetLeft + "px";
-    underBar.style.width = e.currentTarget.offsetWidth + "px";
-    underBar.style.top = e.currentTarget.offsetTop +e.currentTarget.offsetHeight + "px";
-    
+function moveUnderBar(e) {
+  underBar.style.left = e.currentTarget.offsetLeft + "px";
+  underBar.style.width = e.currentTarget.offsetWidth + "px";
+  underBar.style.top =
+    e.currentTarget.offsetTop + e.currentTarget.offsetHeight + "px";
 }
 
 // 매개변수로 함수를 넘겨준다.
 addBtn.addEventListener("click", addTask);
-console.log(tabs);
 for (let i = 1; i < tabs.length; i++) {
   tabs[i].addEventListener("click", function (event) {
     filter(event);
@@ -46,23 +44,23 @@ function addTask() {
   render();
 }
 
-function enterKey(){
-    if(window.event.keyCode == 13){
-        let task = {
-            id: randomIdGenerate(),
-            taskContent: taskInput.value,
-            isComplete: false,
-          };
-          taskList.push(task);
-          render();
-    }
+function enterKey() {
+  if (window.event.keyCode == 13) {
+    let task = {
+      id: randomIdGenerate(),
+      taskContent: taskInput.value,
+      isComplete: false,
+    };
+    taskList.push(task);
+    render();
+  }
 }
 function render() {
   //내가 선택한 탭에따라서 리스트를 달리 보여준다.
   let list = [];
-  if(mode === "all"){
+  if (mode === "all") {
     list = taskList;
-  }else if(mode === "ongoing" || mode === "done"){
+  } else if (mode === "ongoing" || mode === "done") {
     list = filterList;
   }
   let resultHTML = "";
@@ -95,25 +93,21 @@ function toggleComplete(id) {
       break;
     }
   }
-  console.log(taskList);
   render();
 }
 function deleteTask(id) {
-    
-  console.log("click");
   for (let i = 0; i < taskList.length; i++) {
     if (taskList[i].id == id) {
       taskList.splice(i, 1);
       break;
     }
   }
-  for(let i = 0; i < filterList.length; i++){
-  if(filterList[i].id == id){
-    filterList.splice(i,1);
-    break;
+  for (let i = 0; i < filterList.length; i++) {
+    if (filterList[i].id == id) {
+      filterList.splice(i, 1);
+      break;
+    }
   }
-}
-  console.log(taskList)
   render();
 }
 
@@ -132,12 +126,11 @@ function filter(event) {
       }
     }
     render();
-    console.log("진행중", filterList);
   } else if (mode === "done") {
-    for(let i = 0; i < taskList.length; i++){
-        if(taskList[i].isComplete == true){
-            filterList.push(taskList[i]);
-        }
+    for (let i = 0; i < taskList.length; i++) {
+      if (taskList[i].isComplete == true) {
+        filterList.push(taskList[i]);
+      }
     }
     render();
     //끝나는 케이스
